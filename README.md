@@ -29,7 +29,7 @@ Detects topological fractures → broadcasts stitch requests → pays miners to 
 
 ```bash
 # 1. Clone
-git clone https://github.com/yourname/stitchbot.git
+git clone https://github.com/ezrasisk/stitchbot.git
 cd stitchbot
 
 # 2. Build
