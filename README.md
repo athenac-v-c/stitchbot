@@ -26,14 +26,7 @@ Detects topological fractures → broadcasts stitch requests → pays miners to 
 
 ## Features
 
-- **P2P-only signaling** (no OP_RETURN, no bloat)
-- **WebSocket live monitoring**
-- **Rolling DAG window** (10k blocks)
-- **Fracture detection** via betweenness centrality + blue score delta
-- **ECDSA-signed requests** (anti-spam)
-- **Secure wallet** (OS keyring, zeroized memory)
-- **Miner listener plugin** (`miner_listener`)
-- **Rate-limited** (1 stitch / 30s)
+read the code ffs
 
 ---
 
