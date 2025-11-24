@@ -28,13 +28,13 @@ Detects topological fractures → broadcasts stitch requests → pays miners to 
 
 read the code ffs
 
-λ   = honest block propagation rate (blocks/sec)
-μ   = adversarial block rate (we assume μ ≤ 0.5λ for security)
-Δ   = network delay bound (Kaspa ≈ 0.9 s in practice)
-W(t) = number of live tips at time t
-D_f  = duration of a fracture (time two high-blue blocks remain unordered)
-B(t) = blue score growth rate of the selected chain ≈ λ · (1 – orphan_rate)
-P_reorg(ℓ) = probability of an ℓ-block reorg
+λ   = honest block propagation rate (blocks/sec);
+μ   = adversarial block rate (we assume μ ≤ 0.5λ for security);
+Δ   = network delay bound (Kaspa ≈ 0.9 s in practice);
+W(t) = number of live tips at time t;
+D_f  = duration of a fracture (time two high-blue blocks remain unordered);
+B(t) = blue score growth rate of the selected chain ≈ λ · (1 – orphan_rate);
+P_reorg(ℓ) = probability of an ℓ-block reorg;
 
 1. Max Tips (W_max)
 Without StitchBot
