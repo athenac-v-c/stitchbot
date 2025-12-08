@@ -11,7 +11,8 @@ use chrono::Utc;
 use log::info;
 use kaspa_wrpc_client::KaspaRpcClient;  // ← Correct struct from kaspa-wrpc-client
 use kaspa_rpc_core::Notification;  // ← Correct Notification enum
-use kaspa_notify::Notifier;  // ← Correct notifier from kaspa-notify
+use kaspa_notify::notifier::Notifier;  // ← Correct notifier from kaspa-notify
+use kaspa_wallet_core::wallet::Wallet;
 
 #[tokio::main]
 async fn main() -> Result<()> {
