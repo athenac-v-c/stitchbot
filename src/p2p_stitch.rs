@@ -1,10 +1,15 @@
-use kaspa_p2p_lib::{Adaptor, Hub, ConnectionInitializer, Peer, Router, common::ProtocolError, Flow, FlowContext};
+use kaspa_p2p_lib::{Adaptor, ConnectionInitializer, Peer, Router, common::ProtocolError};
+use kaspa_p2p_flows::flow_trait::Flow;
+use kaspa_p2p_flows::flow_context::FlowContext;
 use secp256k1::{SecretKey, PublicKey, Message, ecdsa::Signature};
 use bincode::{serialize, deserialize};
+use serde::{Serialize, Deserialize};
 use anyhow::Result;
 use std::sync::Arc;
 use chrono::Utc;
 use blake2s_simd::Params;
+
+
 
 const STITCH_MSG_ID: u8 = 0xF0;
 
@@ -61,7 +66,11 @@ pub async fn broadcast_stitch(
 ) -> Result<()> {
     let req = StitchRequest::new(weak, tips, reward, sk);
     let payload = serialize(&req)?;
+
+    //there is no Message in common, but they have kaspadMessage
     let msg = kaspa_p2p_lib::common::Message::new(STITCH_MSG_ID, payload);
+
+    
     adaptor.hub().broadcast(msg).await?;
     Ok(())
 }
@@ -77,13 +86,20 @@ pub async fn setup_p2p(cfg: &super::config::Config) -> Result<Adaptor> {
 
 struct StitchInitializer;
 
+//Fixed
+#[async_trait::async_trait]
 impl ConnectionInitializer for StitchInitializer {
-    fn initialize(&self, peer: Arc<Peer>) -> Result<Router, ProtocolError> {
-        let mut router = Router::new(peer);
-        router.register_flow(STITCH_MSG_ID, Arc::new(StitchFlow));
-        Ok(router)
+    //update functiona name initialize to initialize_connection
+    //change peer: Arc<Peer> to router: Arc<Router>
+    async fn initialize_connection(
+        &self,
+        router: Arc<Router>,
+    ) -> Result<(), ProtocolError> {
+            router.register_flow(STITCH_MSG_ID, Arc::new(StitchFlow));
+            Ok(())
     }
 }
+
 
 struct StitchFlow;
 
